@@ -1,9 +1,18 @@
 #!/usr/bin/python3
 
-# accept stdin/pipe/argument
+# accept stdin/pipe/argument, also accept multiline
 # $1: split char
 # $2: select n-th string, default None
 # $3: string to be splitted, default None
+# usage:
+#   $ ./str-split '.' 'www.google.com'
+#   www google com
+#   $ ./str-split '.' 1 'www.google.com'
+#   www
+#   $ echo 'www.google.com' | ./str-split '.'
+#   www google com
+#   $ echo 'www.google.com' | ./str-split '.' 1
+#   www
 
 import sys
 
@@ -38,4 +47,4 @@ for line in _iter:
             print(c, end=' ')
         print()
     else:
-        print(line[_select])
+        print(line[_select-1])
