@@ -1,0 +1,19 @@
+#!/usr/bin/python3
+
+import sys
+
+args = sys.argv
+_split = args[1]
+_select = None
+if len(args) > 2:
+    _select = int(args[2])
+
+for line in sys.stdin.readlines():
+    line = line.rstrip()
+    line = line.split(_split)
+    if _select is None:
+        for c in line:
+            print(c, end=' ')
+        print()
+    else:
+        print(line[_select])
