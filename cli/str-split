@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
-# accept stdin/pipe
+# accept stdin/pipe/argument
 # $1: split char
 # $2: select n-th string, default None
+# $3: string to be splitted, default None
 
 import sys
 
