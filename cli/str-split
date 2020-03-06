@@ -1,14 +1,35 @@
 #!/usr/bin/python3
 
+# accept stdin/pipe
+# $1: split char
+# $2: select n-th string, default None
+
 import sys
 
 args = sys.argv
-_split = args[1]
+
+if sys.stdin.isatty():
+    if len(args) == 1:
+        print('[Error] No input')
+        exit(-1)
+    s = args[-1]
+    ARG_ANCH_SPLIT = 2
+    ARG_ANCH_SELECT = 3
+    _iter = s.split('\n')
+else:
+    ARG_ANCH_SPLIT = 1
+    ARG_ANCH_SELECT = 2
+    _iter = sys.stdin.readlines()
+
+_split = ' '
+if len(args) > ARG_ANCH_SPLIT:
+    _split = args[1]
+
 _select = None
-if len(args) > 2:
+if len(args) > ARG_ANCH_SELECT:
     _select = int(args[2])
 
-for line in sys.stdin.readlines():
+for line in _iter:
     line = line.rstrip()
     line = line.split(_split)
     if _select is None:

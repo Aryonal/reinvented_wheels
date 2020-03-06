@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+
+import os
+import sys
+
+args = sys.argv
+
+def walk(root):
+    if os.path.isdir(root):
+        for dir in os.listdir(root):
+            print(dir)
+    else:
+        print(root)
+
+if len(args) > 1:
+    root = args[1]
+    walk(root)
+
+else:
+
+    for line in sys.stdin.readlines():
+        root = line.rstrip()
+        walk(root)
