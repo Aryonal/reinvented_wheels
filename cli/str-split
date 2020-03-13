@@ -20,7 +20,7 @@ args = sys.argv
 
 if sys.stdin.isatty():
     if len(args) == 1:
-        print('[Error] No input')
+        print('[Error] No input', file=sys.stderr)
         exit(-1)
     s = args[-1]
     ARG_ANCH_SPLIT = 2
@@ -44,7 +44,7 @@ for line in _iter:
     line = line.split(_split)
     if _select is None:
         for c in line:
-            print(c, end=' ')
-        print()
+            print(c, end=' ', file=sys.stdout)
+        print(file=sys.stdout)
     else:
-        print(line[_select-1])
+        print(line[_select-1], file=sys.stdout)
